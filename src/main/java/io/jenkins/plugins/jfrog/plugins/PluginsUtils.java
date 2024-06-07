@@ -22,7 +22,7 @@ public class PluginsUtils {
     @SuppressWarnings("deprecation") // deprecated lookupCredentials
     public static StringCredentials accessTokenCredentialsLookup(String credentialsId, Item item) {
         return CredentialsMatchers.firstOrNull(
-                lookupCredentials(StringCredentials.class, item),
+                lookupCredentials(StringCredentials.class, Jenkins.get()),
                 CredentialsMatchers.withId(credentialsId)
         );
     }
@@ -43,7 +43,7 @@ public class PluginsUtils {
         } else {
             // Looking for username and password
             UsernamePasswordCredentials usernamePasswordCredentials = CredentialsMatchers.firstOrNull(
-                    lookupCredentials(UsernamePasswordCredentials.class, item),
+                    lookupCredentials(UsernamePasswordCredentials.class, Jenkins.get()),
                     CredentialsMatchers.withId(credentialsId)
             );
             if (usernamePasswordCredentials != null) {
